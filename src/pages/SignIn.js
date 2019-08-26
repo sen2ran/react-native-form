@@ -31,8 +31,16 @@ export default class SignIn extends Component {
     formSubmitFn = ()=>{
         const validateState = JSON.parse(JSON.stringify(this.state))
         let isValidemail = checkEmail(validateState.email)
-        alert(isValidemail)
+        if(isValidemail && validateState.password !== ""){
 
+        }else{
+            if(!isValidemail){
+                alert("Not Vaild")
+            }
+            if(validateState.password === ""){
+                alert("Password can't be empty")
+            }
+        }
     }
 
     render(){
