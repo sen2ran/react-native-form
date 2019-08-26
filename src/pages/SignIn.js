@@ -32,7 +32,7 @@ export default class SignIn extends Component {
         const validateState = JSON.parse(JSON.stringify(this.state))
         let isValidemail = checkEmail(validateState.email)
         if(isValidemail && validateState.password !== ""){
-
+            alert("Validated")
         }else{
             if(!isValidemail){
                 alert("Not Vaild")
@@ -59,6 +59,7 @@ export default class SignIn extends Component {
                         value = {this.state.email}
                         onChangeText = {this.emailHandlerFn}
                     />
+                    <Text></Text>
                 </View>
                 <View style={styles.row}>
                     <Text>Password</Text>
