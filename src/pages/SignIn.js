@@ -11,16 +11,64 @@ import {
 import checkEmail from "../util/checkEmail"
 
 export default class SignIn extends Component {
+    state = {
+        email : "",
+        password : ""
+    }
 
+    emailHandlerFn = val => {
+        this.setState({
+            email : val
+        })
+    }
 
+    pwdHandlerFn = val => {
+        this.setState({
+            password : val
+        })
+    }
+
+    formSubmitFn = ()=>{
+        const validateState = JSON.parse(JSON.stringify(this.state))
+        let isValidemail = checkEmail(validateState.email)
+        alert(isValidemail)
+
+    }
 
     render(){
         return(
         <View style={styles.body}>
-            <Text>
+            {/* <Text>
                 SignIn
-            </Text>
-
+            </Text> */}
+            <View style={styles.inputContainer}>
+                <View style={styles.row}>
+                    <Text>Email</Text>
+                    <TextInput
+                        style={styles.textInput} 
+                        placeholder= "Email"
+                        keyboardType = "email-address"
+                        value = {this.state.email}
+                        onChangeText = {this.emailHandlerFn}
+                    />
+                </View>
+                <View style={styles.row}>
+                    <Text>Password</Text>
+                    <TextInput
+                        style={styles.textInput} 
+                        placeholder= "Password"
+                        secureTextEntry = {true}
+                        value = {this.state.password}
+                        onChangeText = {this.pwdHandlerFn}
+                    />
+                </View>
+                <View style={styles.row}>
+                    <Text></Text>
+                    <TouchableOpacity onPress={this.formSubmitFn}>
+                        <Text>Sign-in</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
         </View>
         )
     }
